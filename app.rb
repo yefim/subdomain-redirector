@@ -1,5 +1,9 @@
 require 'sinatra'
 
 get '/' do
-  "happy birthday yefim 🥳 You're at #{request.url}"
+  if request.url.include?('dance.ffokinre.dev')
+    redirect 'https://google.com'
+  else
+    "happy birthday yefim 🥳 You're at #{request.url}"
+  end
 end
