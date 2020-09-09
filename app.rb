@@ -15,7 +15,7 @@ get '/' do
   end
 end
 
-get '/haha' do
+get '/edit' do
   subdomain = request.host.split('.').first
   redirect_url = redis.get(subdomain)
 
@@ -24,17 +24,24 @@ get '/haha' do
       <label>Redirect URL
         <input type='text' name='redirect_url' value="#{redirect_url}">
       </label>
+      <label>Password
+        <input type='text' name='password'>
+      </label>
       <button type='submit'>Submit</button>
     </form>
   )
 end
 
-post '/haha' do
+post '/edit' do
   subdomain = request.host.split('.').first
   redirect_url = params['redirect_url']
 
-  redis.set(subdomain, redirect_url)
-  redirect redirect_url
+  if params['password'] == ENV['EDIT_PASSWORD']
+    redis.set(subdomain, redirect_url)
+    redirect redirect_url
+  else
+    'bad password'
+  end
 end
 
 def redis
