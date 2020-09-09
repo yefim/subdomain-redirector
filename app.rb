@@ -3,9 +3,9 @@ require 'redis'
 
 get '/' do
   subdomain = request.host.split('.').first
-  puts "--> subdomain #{subdomain} <--"
+  print "--> subdomain #{subdomain} <--"
   redirect_url = redis.get(subdomain)
-  puts "--> redirecting to #{redirect_url} <--"
+  print "--> redirecting to #{redirect_url} <--"
 
   if redirect_url
     redirect redirect_url
