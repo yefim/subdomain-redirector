@@ -20,14 +20,14 @@ get '/edit' do
   redirect_url = redis.get(subdomain)
 
   %Q(
-    <form method='post' action=''>
+    <form method="post" action="" onsubmit="navigator.clipboard.writeText(window.location.host)">
       <label>Redirect URL
-        <input type='text' name='redirect_url' value="#{redirect_url}">
+        <input type="text" name="redirect_url" value="#{redirect_url}">
       </label>
       <label>Password
-        <input type='text' name='password'>
+        <input type="text" name="password">
       </label>
-      <button type='submit'>Submit</button>
+      <button type="submit">Submit</button>
     </form>
   )
 end
