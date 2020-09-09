@@ -1,11 +1,12 @@
 require 'sinatra'
 require 'redis'
+use Rack::Logger
 
 get '/' do
   subdomain = request.host.split('.').first
-  print "--> subdomain #{subdomain} <--"
+  request.logger.info "--> subdomain #{subdomain} <--"
   redirect_url = redis.get(subdomain)
-  print "--> redirecting to #{redirect_url} <--"
+  request.logger.info "--> redirecting to #{redirect_url} <--"
 
   if redirect_url
     redirect redirect_url
