@@ -12,7 +12,7 @@ get '/' do
   end
 end
 
-get '/edit' do
+get '/haha' do
   subdomain = request.host.split('.').first
   redirect_url = redis.get(subdomain)
 
@@ -26,7 +26,7 @@ get '/edit' do
   )
 end
 
-post '/edit' do
+post '/haha' do
   subdomain = request.host.split('.').first
   redirect_url = params['redirect_url']
 
