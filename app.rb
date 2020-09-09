@@ -13,12 +13,15 @@ get '/' do
 end
 
 get '/edit' do
-  %q(
-    <form method="post" action="">
+  subdomain = request.host.split('.').first
+  redirect_url = redis.get(subdomain)
+
+  %Q(
+    <form method='post' action=''>
       <label>Redirect URL
-        <input type="text" name="redirect_url">
+        <input type='text' name='redirect_url' value="#{redirect_url}">
       </label>
-      <button type="submit">Submit</button>
+      <button type='submit'>Submit</button>
     </form>
   )
 end
