@@ -1,9 +1,10 @@
 require 'sinatra'
+require 'redis'
 
 get '/' do
-  if request.url.include?('dance.yef.im')
+  if request.host.include?('dance.yef.im')
     redirect 'https://google.com'
   else
-    "happy birthday yefim 🥳 You're at #{request.url}"
+    "happy birthday yefim 🥳 You're at #{request.host}"
   end
 end
