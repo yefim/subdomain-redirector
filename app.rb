@@ -4,15 +4,23 @@ use Rack::Logger
 
 get '/' do
   subdomain = request.host.split('.').first
-  request.logger.info "--> subdomain #{subdomain} <--"
   redirect_url = redis.get(subdomain)
-  request.logger.info "--> redirecting to #{redirect_url} <--"
+
+  redis.incr("count-#{subdomain}")
+  redis.close
 
   if redirect_url
     redirect redirect_url
   else
-    "happy birthday yefim 🥳 You're at #{request.host}"
+    "You're at #{request.host}"
   end
+end
+
+get '/count' do
+  subdomain = request.host.split('.').first
+  count = redis.get("count-#{subdomain}")
+  redis.close
+  count
 end
 
 get '/edit' do
