@@ -23,6 +23,13 @@ get '/count' do
   count
 end
 
+get '/clear' do
+  subdomain = request.host.split('.').first
+  redis.del("count-#{subdomain}")
+  redis.close
+  'ok'
+end
+
 get '/edit' do
   subdomain = request.host.split('.').first
   redirect_url = redis.get(subdomain)
