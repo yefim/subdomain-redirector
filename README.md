@@ -1,6 +1,6 @@
 # CNAME Redirector
 
-A small app that redirects subdomains to URLs. You can deploy it to Heroku and point your wildcard domain to it.
+An app that redirects subdomains to URLs. You can deploy it to Heroku and point your wildcard domain to it.
 
 ## Routes
 
