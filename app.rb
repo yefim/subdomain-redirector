@@ -2,6 +2,10 @@ require 'sinatra'
 require 'redis'
 use Rack::Logger
 
+get '/info' do
+  request.host
+end
+
 get '/' do
   subdomain = request.host.split('.').first
   redirect_url = redis.get(subdomain)
@@ -60,5 +64,5 @@ post '/edit' do
 end
 
 def redis
-  @redis ||= Redis.new(url: ENV["REDIS_URL"])
+  @redis ||= Redis.new(url: ENV['REDIS_URL'])
 end
