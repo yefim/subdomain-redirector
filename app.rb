@@ -34,7 +34,7 @@ get '/edit' do
         <input type="text" name="redirect_url" value="#{redirect_url}">
       </label>
       <label>Password
-        <input type="text" name="password">
+        <input type="password" name="password">
       </label>
       <button type="submit">Submit</button>
     </form>
