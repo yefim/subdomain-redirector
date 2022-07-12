@@ -48,7 +48,7 @@ post '/edit' do
     redis.set(request.host, redirect_url)
     redirect redirect_url
   else
-    'bad password'
+    "#{params['password']} is not the correct password."
   end
 end
 
