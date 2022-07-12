@@ -7,10 +7,9 @@ get '/info' do
 end
 
 get '/' do
-  subdomain = request.host.split('.').first
-  redirect_url = redis.get(subdomain)
+  redirect_url = redis.get(request.host)
 
-  redis.incr("count-#{subdomain}")
+  redis.incr("count-#{request.host}")
   redis.close
 
   if redirect_url
@@ -21,22 +20,13 @@ get '/' do
 end
 
 get '/count' do
-  subdomain = request.host.split('.').first
-  count = redis.get("count-#{subdomain}")
+  count = redis.get("count-#{request.host}")
   redis.close
   count
 end
 
-get '/clear' do
-  subdomain = request.host.split('.').first
-  redis.del("count-#{subdomain}")
-  redis.close
-  'ok'
-end
-
 get '/edit' do
-  subdomain = request.host.split('.').first
-  redirect_url = redis.get(subdomain)
+  redirect_url = redis.get(request.host)
 
   %Q(
     <form method="post" action="" onsubmit="navigator.clipboard.writeText('https://' + window.location.host)">
@@ -52,11 +42,10 @@ get '/edit' do
 end
 
 post '/edit' do
-  subdomain = request.host.split('.').first
   redirect_url = params['redirect_url']
 
   if params['password'] == ENV['EDIT_PASSWORD']
-    redis.set(subdomain, redirect_url)
+    redis.set(request.host, redirect_url)
     redirect redirect_url
   else
     'bad password'
