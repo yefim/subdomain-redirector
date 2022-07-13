@@ -6,6 +6,10 @@ get '/info' do
   request.host
 end
 
+get '/dash' do
+  'this is where the dashboard lives'
+end
+
 get '/' do
   redirect_url = redis.get(request.host)
 
