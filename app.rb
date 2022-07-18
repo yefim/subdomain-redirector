@@ -30,19 +30,13 @@ get '/count' do
 end
 
 get '/edit' do
-  redirect_url = redis.get(request.host)
+  host = request.host
+  redirect_url = redis.get(host)
 
-  %Q(
-    <form method="post" action="" onsubmit="navigator.clipboard.writeText('https://' + window.location.host)">
-      <label>Redirect URL
-        <input type="text" name="redirect_url" value="#{redirect_url}">
-      </label>
-      <label>Password
-        <input type="password" name="password">
-      </label>
-      <button type="submit">Submit</button>
-    </form>
-  )
+  erb :edit, locals: {
+    redirect_url: redirect_url,
+    host: host,
+  }
 end
 
 post '/edit' do

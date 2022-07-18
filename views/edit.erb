@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <title>Edit <%= host %></title>
+  </head>
+  <body>
+    <p>You're editing "<%= host %>"</p>
+    <form method="post" action="" onsubmit="navigator.clipboard.writeText('https://' + window.location.host)">
+      <label>Redirect URL
+        <input type="text" name="redirect_url" value="<%= redirect_url %>">
+      </label>
+      <label>Password
+        <input type="password" name="password">
+      </label>
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>
