@@ -11,15 +11,16 @@ get '/dash' do
 end
 
 get '/' do
-  redirect_url = redis.get(request.host)
+  host = request.host
+  redirect_url = redis.get(host)
 
-  redis.incr("count-#{request.host}")
+  redis.incr("count-#{host}")
   redis.close
 
   if redirect_url
     redirect redirect_url
   else
-    "You're at #{request.host}"
+    "You're at #{host}"
   end
 end
 
