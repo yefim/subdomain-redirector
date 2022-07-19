@@ -20,7 +20,9 @@ get '/' do
   if redirect_url
     redirect redirect_url
   else
-    "You're at #{host}"
+    %Q(
+There is no redirect for #{host}. <a href="/edit">Would you like to create one?</a>
+    )
   end
 end
 
