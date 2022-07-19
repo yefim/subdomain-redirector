@@ -13,11 +13,3 @@ label {
   display: block;
   margin-bottom: 12px;
 }
-
-button {
-  border: 1px solid #444;
-  border-radius: 4px;
-  padding: 8px 24px;
-  background: none;
-  cursor: pointer;
-}
