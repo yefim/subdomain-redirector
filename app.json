@@ -1,0 +1,9 @@
+{
+  "name": "Subdomain Redirector",
+  "description": "Create short links from any subdomain",
+  "repository": "https://github.com/yefim/subdomain-redirector",
+  "keywords": ["shortlinks"],
+  "addons": [
+    "heroku-redis"
+  ]
+}
