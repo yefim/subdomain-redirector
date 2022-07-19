@@ -3,6 +3,9 @@
   "description": "Create short links from any subdomain",
   "repository": "https://github.com/yefim/subdomain-redirector",
   "keywords": ["shortlinks"],
+  "env": {
+    "EDIT_PASSWORD": "pleasechangethispassword"
+  },
   "addons": [
     "heroku-redis"
   ]
