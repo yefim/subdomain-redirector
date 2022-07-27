@@ -7,7 +7,7 @@ get '/info' do
 end
 
 get '/dash' do
-  'this is where the dashboard lives'
+  domain = request.host.split('.').last(2).join('.')
 end
 
 get '/' do
