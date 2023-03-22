@@ -2,14 +2,6 @@ require 'sinatra'
 require 'redis'
 use Rack::Logger
 
-get '/info' do
-  request.host
-end
-
-get '/dash' do
-  domain = request.host.split('.').last(2).join('.')
-end
-
 get '/' do
   host = request.host
   redirect_url = redis.get(host)
